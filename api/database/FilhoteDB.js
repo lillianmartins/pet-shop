@@ -8,8 +8,11 @@ export default class FilhoteDB {
       const valores = [filhote.especie, filhote.raca];
       const conexao = await obterConexao();
       const resultado = await conexao.execute(sql, valores);
-      filhote.id = resultado[0].insertId;
+      const idFilhote = resultado[0].insertId;
+      filhote.id = idFilhote
       conexao.release();
+
+      return idFilhote
     }
   }
 

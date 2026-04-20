@@ -13,9 +13,9 @@ export default {
       }
 
       const novoFilhote = new Filhote(null, especie, raca);
-      await filhoteDB.cadastrarFilhote(novoFilhote);
+      const idFilhote = await filhoteDB.cadastrarFilhote(novoFilhote);
       
-      return res.status(201).json({ mensagem: "Filhote cadastrado com sucesso!" });
+      return res.status(201).json({ mensagem: "Filhote cadastrado com sucesso!", filhote: { id: idFilhote } });
     } catch (error) {
       return res.status(500).json({ mensagem: "Erro ao cadastrar filhote", erro: error.message });
     }
